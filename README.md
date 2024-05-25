@@ -1,6 +1,6 @@
 
 # 项目目录结构
-##如有侵权请联系我删除：joeykini@gmail.com
+#如有侵权请联系我删除：joeykini@gmail.com
 
 ```plaintext
 ├── .vscode
