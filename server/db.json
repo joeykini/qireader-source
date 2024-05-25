@@ -1,0 +1,20 @@
+{
+  "session": {
+    "user": {
+      "id": 1,
+      "name": "John Doe"
+    }
+  },
+  "markers": {
+    "unread": [
+      {
+        "id": 1,
+        "title": "Unread Marker 1"
+      },
+      {
+        "id": 2,
+        "title": "Unread Marker 2"
+      }
+    ]
+  }
+}

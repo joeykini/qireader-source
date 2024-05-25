@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QiReader - A Modern Web RSS Reader</title>
+  <meta name="description" content="Beautiful, fast, and synced on all your devices.">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <noscript>
+    <h1>You need to enable JavaScript to run this app.</h1>
+  </noscript>
+  <div id="app-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; z-index: 999999; left: 0; top: 0; right: 0; bottom: 0">
+    <p>Loading...</p>
+  </div>
+  <div id="container">
+    <div id="root"></div>
+  </div>
+  <script>
+    async function initializeApp() {
+      console.log("Initializing app.");
+      const userData = await fetchUserData();
+      const markersData = await fetchMarkersData();
+      renderApp(userData, markersData);
+    }
+
+    async function fetchUserData() {
+      try {
+        const response = await fetch("/api/session/user.html");
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("User Data:", data.user);
+        return data.user;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return null;
+      }
+    }
+
+    async function fetchMarkersData() {
+      try {
+        const response = await fetch("/api/markers/unread/counts.html");
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Markers Data:", data.unread);
+        return data.unread;
+      } catch (error) {
+        console.error("Error fetching markers data:", error);
+        return [];
+      }
+    }
+
+    function renderApp(user, markers) {
+      const rootElement = document.getElementById("root");
+      if (!rootElement) {
+        console.error("Root element not found.");
+        return;
+      }
+
+      rootElement.innerHTML = `
+        <h1>Welcome to QiReader</h1>
+        <p>Your RSS feeds will appear here.</p>
+        ${user ? `<p>User: ${user.name}</p>` : '<p>Loading user data...</p>'}
+        ${markers && markers.length > 0 ? `
+          <ul>
+            ${markers.map(marker => `<li>${marker.title}</li>`).join('')}
+          </ul>
+        ` : '<p>No unread markers</p>'}
+      `;
+
+      // 隐藏加载动画
+      const appLoadingElement = document.getElementById("app-loading");
+      if (appLoadingElement) {
+        appLoadingElement.style.display = "none";
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      initializeApp();
+    });
+  </script>
+</body>
+</html>

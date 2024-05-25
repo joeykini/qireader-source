@@ -1,0 +1,33 @@
+const express = require('express');
+const app = express();
+const port = 8080;
+
+// 定义 /api/session/user 路由
+app.get('/api/session/user', (req, res) => {
+    res.json({
+        result: {
+            id: "7MLwoA9dynVlbJnX",
+            displayName: "Demo15350284",
+            email: "demo15350284@qireader.com",
+            timezoneOffset: -480,
+            plan: 0,
+            isPlanCancelled: false,
+            isDemo: true,
+            ebookNetDiskUrl: "https://rsshub.app/apnews/rss/business",
+            ebookSendFrom: "ebook_129754@qireader.com",
+            ebookKeepLinks: true,
+            ebookAppendQrCode: false,
+            ebookAutoSendEnabled: false,
+            ebookAutoSendInterval: 1,
+            ebookAutoSendHour: 10,
+            ebookAutoSendMinArticles: 1,
+            ebookAutoSendMaxArticles: 50,
+            ebookNumSent: 0
+        }
+    });
+});
+
+// 启动服务器
+app.listen(port, () => {
+    console.log(`Server is running on http://127.0.0.1:${port}`);
+});

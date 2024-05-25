@@ -1,0 +1,29 @@
+{
+    "name": "Qi Reader",
+    "short_name": "Qi Reader",
+    "start_url": "/?utm_source=homescreen",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "lang": "en",
+    "scope": "/",
+    "description": "A modern web RSS reader",
+    "categories": ["news", "magazines"],
+    "icons": [
+        {
+            "src": "icon192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icon512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "icon192.maskable.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        }
+    ]
+}
